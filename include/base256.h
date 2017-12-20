@@ -15,6 +15,8 @@ extern "C" {
  * Initialize decode.
  * It must be called before calling `base256_decode', however one call to the
  * `base256_init_dec' is enough for multiple `base256_decode' uses.
+ *
+ * This function is not thread-safe.
  */
 extern void base256_init_dec(void);
 
