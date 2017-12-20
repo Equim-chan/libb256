@@ -20,8 +20,6 @@ set(cflags
 # check_include_files(pthread.h HAVE_PTHREAD_H)
 # configure_file(src/config.h.in src/config.h)
 
-include_directories(include)
-
 if(WITH_SHARED)
   add_library(b256 SHARED ${sources})
   target_compile_options(b256 PUBLIC ${cflags})
