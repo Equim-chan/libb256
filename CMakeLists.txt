@@ -16,9 +16,9 @@ set(cflags
     -pedantic
     -Wall -Wextra -Wshadow -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes)
 
-# include(CheckIncludeFiles)
-# check_include_files(pthread.h HAVE_PTHREAD_H)
-# configure_file(src/config.h.in src/config.h)
+add_custom_target(man ALL
+                  COMMAND 'asciidoctor -o - -b manpage doc/libb256.3.adoc | sed "s@$(date +"%Y-%m-%d")@$(date +"%B %Y")@" > man/libb256.3'
+                  DEPENDS doc/libb256.3.adoc)
 
 if(WITH_SHARED)
   add_library(b256 SHARED ${sources})

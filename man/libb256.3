@@ -1,0 +1,97 @@
+'\" t
+.\"     Title: libb256
+.\"    Author: [see the "AUTHORS" section]
+.\" Generator: Asciidoctor 1.5.6.1
+.\"      Date: December 2017
+.\"    Manual: Library Functions Manual
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "LIBB256" "3" "December 2017" "\ \&" "Library Functions Manual"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.LINKSTYLE blue R < >
+.SH "NAME"
+libb256 \- library used to encode/decode base256 data.
+.SH "SYNOPSIS"
+.sp
+\fB#include <base256.h>\fP
+.sp
+\fBBASE256_ENCODED_SIZE(\fP\fIx\fP\fB)\fP
+.br
+\fBBASE256_ENCODED_SIZE(\fP\fIx\fP\fB)\fP
+.sp
+\fBvoid base256_init_dec(void);\fP
+.sp
+\fBint base256_decode(unsigned char* \fP\fIout\fP\fB, int \fP\fIout_size\fP\fB, const char \fP\fIin\fP\fB);\fP
+.br
+\fBint base256_encode(char* \fP\fIout\fP\fB, int \fP\fIout_size\fP\fB, const unsigned char* \fP\fIin\fP\fB, int \fP\fIin_size\fP\fB);\fP
+.SH "DESCRIPTION"
+.sp
+The \fBlibb256\fP library is used to encode and decode base256 data. Base256 is a
+binary\-to\-text encoding that encodes binary data into emoji string, as defined
+in its initial Go implementation which can be found at
+.URL "https://github.com/Equim\-chan/base256" "" "."
+.sp
+This library is compatible with the original Go implementation.
+.sp
+The output parameter \fIout\fP of \fBbase256_encode\fP is UTF\-8 encoded, so must the
+parameter \fIin\fP of \fBbase256_decode\fP be.
+.sp
+\fBbase256_init_dec\fP must be called before calling \fBbase256_decode\fP, however this
+function is not thread\-safe and you must not call it more than once.
+What \fBbase256_init_dec\fP does is initializing the decode table and therefore it
+is not required for the encode.
+.sp
+\fBbase256_decode\fP tells the size of \fIin\fP by \fBstrlen\fP(3), as base256 encoded
+string must be zero terminated.
+.SH "RETURN VALUE"
+.sp
+On success, \fBbase256_decode\fP and \fBbase256_encode\fP return the number of bytes
+written to \fIout\fP. Negative return value implies an error.
+.SH "ERRNO"
+.TS
+allbox tab(:);
+lt lt lt.
+T{
+.sp
+Macro
+T}:T{
+.sp
+Value
+T}:T{
+.sp
+Description
+T}
+T{
+.sp
+BASE256_ERR_NO_DEC_INIT
+T}:T{
+.sp
+\-1
+T}:T{
+.sp
+\fIdec_init\fP hadn\(cqt been called by the time \fIdecode\fP was called
+T}
+T{
+.sp
+BASE256_ERR_NO_DEC_INIT
+T}:T{
+.sp
+\-2
+T}:T{
+.sp
+the input for \fIdecode\fP was bad encoded
+T}
+.TE
+.sp
+.SH "AUTHOR"
+.sp
+Equim

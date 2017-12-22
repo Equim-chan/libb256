@@ -1,0 +1,61 @@
+// asciidoctor -o - -b manpage doc/libb256.3.adoc | sed "s@$(date +"%Y-%m-%d")@$(date +"%B %Y")@" > man/libb256.3
+
+= libb256(3)
+:doctype: manpage
+:man manual: Library Functions Manual
+
+== NAME
+libb256 - library used to encode/decode base256 data.
+
+== SYNOPSIS
+*#include <base256.h>*
+
+**BASE256_ENCODED_SIZE(**__x__**)** +
+**BASE256_ENCODED_SIZE(**__x__**)**
+
+*void base256_init_dec(void);*
+
+**int base256_decode(unsigned char* **__out__**, int **__out_size__**, const char **__in__**);** +
+**int base256_encode(char* **__out__**, int **__out_size__**, const unsigned char* **__in__**, int **__in_size__**);**
+
+== DESCRIPTION
+The *libb256* library is used to encode and decode base256 data. Base256 is a
+binary-to-text encoding that encodes binary data into emoji string, as defined
+in its initial Go implementation which can be found at
+https://github.com/Equim-chan/base256.
+
+This library is compatible with the original Go implementation.
+
+The output parameter _out_ of *base256_encode* is UTF-8 encoded, so must the
+parameter _in_ of *base256_decode* be.
+
+*base256_init_dec* must be called before calling *base256_decode*, however this
+function is not thread-safe and you must not call it more than once.
+What *base256_init_dec* does is initializing the decode table and therefore it
+is not required for the encode.
+
+*base256_decode* tells the size of _in_ by *strlen*(3), as base256 encoded
+string must be zero terminated.
+
+== RETURN VALUE
+On success, *base256_decode* and *base256_encode* return the number of bytes
+written to _out_. Negative return value implies an error.
+
+== ERRNO
+[cols=3*,options=header]
+|===
+|Macro
+|Value
+|Description
+
+|BASE256_ERR_NO_DEC_INIT
+|-1
+|_dec_init_ hadn't been called by the time _decode_ was called
+
+|BASE256_ERR_NO_DEC_INIT
+|-2
+|the input for _decode_ was bad encoded
+|===
+
+== AUTHOR
+Equim
