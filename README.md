@@ -49,6 +49,8 @@ int main(void)
     }
 
     puts(decoded); //=> Hello, 世界
+
+    return 0;
 }
 ```
 
