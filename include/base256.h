@@ -5,7 +5,7 @@
 #define BASE256_DECODED_SIZE(x) (x / 4)
 
 #define BASE256_ERR_NO_DEC_INIT -1 /* dec_init hasn't been called */
-#define BASE256_ERR_NO_DEC_INIT -2   /* the input for decode was bad encoded */
+#define BASE256_ERR_BAD_INPUT -2   /* the input for decode was bad encoded */
 
 #ifdef __cplusplus
 extern "C" {

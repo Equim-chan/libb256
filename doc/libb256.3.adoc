@@ -52,7 +52,7 @@ written to _out_. Negative return value implies an error.
 |-1
 |_dec_init_ hadn't been called by the time _decode_ was called
 
-|BASE256_ERR_NO_DEC_INIT
+|BASE256_ERR_BAD_INPUT
 |-2
 |the input for _decode_ was bad encoded
 |===
