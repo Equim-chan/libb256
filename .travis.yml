@@ -1,0 +1,15 @@
+language: c
+compiler:
+  - gcc
+  - clang
+
+sudo: false
+
+script:
+  - cd build && cmake .. && make
+  - cd build && cmake -DENABLE_SHARED=1 .. && make
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always

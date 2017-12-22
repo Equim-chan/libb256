@@ -5,7 +5,7 @@ if(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR} AND NOT WIN3
   message(FATAL_ERROR "You can not use CMake to build the project from the root of it's source tree! Remove the CMakeCache.txt file from this directory, then create a separate directory (either below this directory or elsewhere), and then re-run CMake from there.")
 endif()
 
-option(WITH_SHARED "Build shared library instead of static" OFF)
+option(ENABLE_SHARED "Build shared library instead of static" OFF)
 
 set(sources
     src/base256.c
@@ -16,7 +16,7 @@ set(cflags
     -pedantic
     -Wall -Wextra -Wshadow -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes)
 
-if(WITH_SHARED)
+if(ENABLE_SHARED)
   add_library(b256 SHARED ${sources})
   target_compile_options(b256 PUBLIC ${cflags})
   target_include_directories(b256 PUBLIC include)
