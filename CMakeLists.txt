@@ -16,10 +16,6 @@ set(cflags
     -pedantic
     -Wall -Wextra -Wshadow -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes)
 
-add_custom_target(man ALL
-                  COMMAND 'asciidoctor -o - -b manpage doc/libb256.3.adoc | sed "s@$(date +"%Y-%m-%d")@$(date +"%B %Y")@" > man/libb256.3'
-                  DEPENDS doc/libb256.3.adoc)
-
 if(WITH_SHARED)
   add_library(b256 SHARED ${sources})
   target_compile_options(b256 PUBLIC ${cflags})
@@ -32,3 +28,4 @@ endif()
 
 install(TARGETS b256 DESTINATION lib)
 install(FILES include/base256.h DESTINATION include)
+install(FILES man/libb256.3 DESTINATION share/man/man3)
