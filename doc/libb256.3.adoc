@@ -11,7 +11,7 @@ libb256 - library used to encode/decode base256 data.
 *#include <base256.h>*
 
 **BASE256_ENCODED_SIZE(**__x__**)** +
-**BASE256_ENCODED_SIZE(**__x__**)**
+**BASE256_DECODED_SIZE(**__x__**)**
 
 *void base256_init_dec(void);*
 
