@@ -1,6 +1,5 @@
 #include <string.h>
 #include <stdbool.h>
-// #include <pthread.h>
 
 #include <base256.h>
 #include "uthash.h"
@@ -87,7 +86,7 @@ int base256_decode(unsigned char* out, int out_size,
                    const char* in)
 {
     if (!has_dec_initialized) {
-        return ERR_NO_DEC_INIT;
+        return BASE256_ERR_NO_DEC_INIT;
     }
 
     int in_size = strlen(in);
@@ -102,7 +101,7 @@ int base256_decode(unsigned char* out, int out_size,
 
         HASH_FIND(hh, dec_tab, cur, 4, e);
         if (e == NULL) {
-            return ERR_BAD_INPUT;
+            return BASE256_ERR_BAD_INPUT;
         }
 
         out[o] = e->val;

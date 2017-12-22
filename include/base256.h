@@ -4,8 +4,8 @@
 #define BASE256_ENCODED_SIZE(x) (x * 4 + 1)
 #define BASE256_DECODED_SIZE(x) (x / 4)
 
-#define ERR_NO_DEC_INIT -1 /* dec_init hasn't been called */
-#define ERR_BAD_INPUT -2   /* the input for decode was bad encoded*/
+#define BASE256_ERR_NO_DEC_INIT -1 /* dec_init hasn't been called */
+#define BASE256_ERR_NO_DEC_INIT -2   /* the input for decode was bad encoded */
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,10 +13,10 @@ extern "C" {
 
 /**
  * Initialize decode.
- * It must be called before calling `base256_decode', however one call to the
+ * It must be called before calling `base256_decode'. One call to the
  * `base256_init_dec' is enough for multiple `base256_decode' uses.
  *
- * This function is not thread-safe.
+ * This function is not thread-safe. You must not call it more than once.
  */
 extern void base256_init_dec(void);
 
