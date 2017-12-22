@@ -6,8 +6,8 @@ compiler:
 sudo: false
 
 script:
-  - cd build && cmake .. && make
-  - cd build && cmake -DENABLE_SHARED=1 .. && make
+  - pushd build && cmake .. && make && popd
+  - pushd build && cmake -DENABLE_SHARED=1 .. && make && popd
 
 notifications:
   email:
