@@ -30,9 +30,9 @@ The output parameter _out_ of *base256_encode* is UTF-8 encoded, so must the
 parameter _in_ of *base256_decode* be.
 
 *base256_init_dec* must be called before calling *base256_decode*, however this
-function is not thread-safe and you must not call it more than once.
-What *base256_init_dec* does is initializing the decode table and therefore it
-is not required for the encode.
+function is not thread-safe and it must not be called for more than once.
+What *base256_init_dec* does is initializing the decode table and thus it is not
+required for the encode.
 
 *base256_decode* tells the size of _in_ by *strlen*(3), as base256 encoded
 string must be zero terminated.
