@@ -1,7 +1,7 @@
 # libb256
 [![Travis](https://img.shields.io/travis/Equim-chan/libb256.svg)](https://travis-ci.org/Equim-chan/libb256)
 
-C implementation of base256.
+C implementation of [base256](https://github.com/Equim-chan/base256).
 
 ## Install
 ```shell
